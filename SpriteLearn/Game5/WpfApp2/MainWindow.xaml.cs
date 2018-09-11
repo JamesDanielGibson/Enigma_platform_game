@@ -21,11 +21,11 @@ namespace WpfApp2
     public partial class MainWindow : Window
     {
         System.Windows.Threading.DispatcherTimer timer;
-        double Yvel = 2;
-        double Xvel = 4;
+        double Yvel = 10;
+        double Xvel = 4; 
         bool left;
         bool right;
-        bool jump;
+        //bool jump;
         int xDir = 4;
         public MainWindow()
         {
@@ -34,32 +34,32 @@ namespace WpfApp2
             timer.Interval = TimeSpan.FromMilliseconds(1);
             timer.IsEnabled = true;
             timer.Tick += dispatcherTimer_Tick;
-            
+            Xvel = 4;
         }
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
-            updatePlayer();
+            //updatePlayer();
         }
 
-        private void updatePlayer()
-        {
+        //private void updatePlayer()
+        //{
 
-            double nextX = Canvas.GetLeft(sprite) + Xvel;
+        //    double nextX = Canvas.GetLeft(sprite) + Xvel;
             
            
-            //double nextY = Canvas.GetTop(sprite) + Yvel;
-            //Canvas.SetTop(sprite, nextY);
-            //if (nextY < 0 || nextY + sprite.ActualHeight > can.ActualHeight && Yvel > 0)
-            //{
-            //    Yvel = -Yvel;
-            //}
-        }
+        //    //double nextY = Canvas.GetTop(sprite) + Yvel;
+        //    //Canvas.SetTop(sprite, nextY);
+        //    //if (nextY < 0 || nextY + sprite.ActualHeight > can.ActualHeight && Yvel > 0)
+        //    //{
+        //    //    Yvel = -Yvel;
+        //    //}
+        //}
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             double nextX;
-            
+            double nextY;
             switch (e.Key)
             {
                 case Key.Left:
@@ -69,7 +69,7 @@ namespace WpfApp2
                     if (nextX < 0 )
                     {
 
-                        Canvas.SetLeft(sprite, 0);
+                        Canvas.SetLeft(sprite, -4);
                         
                     }
                     break;
@@ -80,10 +80,30 @@ namespace WpfApp2
                     if ( nextX + sprite.ActualWidth > can.ActualWidth )
                     {
 
-                        Canvas.SetLeft(sprite, can.ActualWidth-sprite.ActualWidth);
+                        Canvas.SetLeft(sprite, can.ActualWidth-sprite.ActualWidth-12);
 
                     }
                     break;
+                case Key.Space:
+                    jump();
+                    
+                    break;
+            }
+        }
+        private void jump()
+        {
+            double nextY;
+            for (int i = 10; i >= 0; i--)
+            {
+                System.Threading.Thread.Sleep(200);
+                nextY = Canvas.GetTop(sprite) - i;
+                Canvas.SetTop(sprite, nextY);
+                if (nextY<0)
+                {
+
+                    Canvas.SetLeft(sprite, can.ActualHeight - sprite.ActualHeight + 12);
+
+                }
             }
         }
     }
