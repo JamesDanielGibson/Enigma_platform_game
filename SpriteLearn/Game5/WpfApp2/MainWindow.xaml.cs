@@ -34,7 +34,7 @@ namespace WpfApp2
             timer.Interval = TimeSpan.FromMilliseconds(1);
             timer.IsEnabled = true;
             timer.Tick += dispatcherTimer_Tick;
-            
+            Xvel = 4;
         }
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
@@ -58,33 +58,53 @@ namespace WpfApp2
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            double nextX;
-            
-            switch (e.Key)
-            {
-                case Key.Left:
-                   
-                    nextX = Canvas.GetLeft(sprite) - Xvel;
-                    Canvas.SetLeft(sprite, nextX);
-                    if (nextX < 0 )
-                    {
+            if (can.Visibility == Visibility.Visible) {
+                double nextX;
 
-                        Canvas.SetLeft(sprite, 0);
+                switch (e.Key)
+                {
+                    case Key.Left:
+
+                        nextX = Canvas.GetLeft(sprite) - Xvel;
+                        Canvas.SetLeft(sprite, nextX);
+                        if (nextX < 0)
+                        {
+
+                            Canvas.SetLeft(sprite, 0);
+
+                        }
+                        break;
+                    case Key.Right:
+
+                        nextX = Canvas.GetLeft(sprite) + Xvel;
+                        Canvas.SetLeft(sprite, nextX);
+                        if (nextX + sprite.ActualWidth > can.ActualWidth)
+                        {
+
+                            Canvas.SetLeft(sprite, can.ActualWidth - sprite.ActualWidth);
+
+                        }
+                        break;
+                    case Key.Q:
                         
-                    }
-                    break;
-                case Key.Right:
-                   
-                    nextX = Canvas.GetLeft(sprite) + Xvel;
-                    Canvas.SetLeft(sprite, nextX);
-                    if ( nextX + sprite.ActualWidth > can.ActualWidth )
-                    {
+                        can.Visibility = Visibility.Hidden;
+                        btnStart.Visibility = Visibility.Visible;
 
-                        Canvas.SetLeft(sprite, can.ActualWidth-sprite.ActualWidth);
 
-                    }
-                    break;
+
+                        break;
+
+                }
             }
+        }
+
+
+        private void btnStart_Click(object sender, RoutedEventArgs e)
+        {
+            can.Visibility = Visibility.Visible;
+            btnStart.Visibility = Visibility.Hidden;
+
+
         }
     }
 }
