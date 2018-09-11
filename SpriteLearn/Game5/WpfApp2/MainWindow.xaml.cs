@@ -58,38 +58,46 @@ namespace WpfApp2
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            double nextX;
-            double nextY;
-            switch (e.Key)
-            {
-                case Key.Left:
-                   
-                    nextX = Canvas.GetLeft(sprite) - Xvel;
-                    Canvas.SetLeft(sprite, nextX);
-                    if (nextX < 0 )
-                    {
+            if (can.Visibility == Visibility.Visible) {
+                double nextX;
 
-                        Canvas.SetLeft(sprite, -4);
-                        
-                    }
-                    break;
-                case Key.Right:
-                   
-                    nextX = Canvas.GetLeft(sprite) + Xvel;
-                    Canvas.SetLeft(sprite, nextX);
-                    if ( nextX + sprite.ActualWidth > can.ActualWidth )
-                    {
+                switch (e.Key)
+                {
+                    case Key.Left:
 
-                        Canvas.SetLeft(sprite, can.ActualWidth-sprite.ActualWidth-12);
+                        nextX = Canvas.GetLeft(sprite) - Xvel;
+                        Canvas.SetLeft(sprite, nextX);
+                        if (nextX < 0)
+                        {
 
-                    }
-                    break;
-                case Key.Space:
-                    jump();
-                    
-                    break;
+                            Canvas.SetLeft(sprite, -4);
+
+                        }
+                        break;
+                    case Key.Right:
+
+                        nextX = Canvas.GetLeft(sprite) + Xvel;
+                        Canvas.SetLeft(sprite, nextX);
+                        if (nextX + sprite.ActualWidth > can.ActualWidth)
+                        {
+
+                            Canvas.SetLeft(sprite, can.ActualWidth - sprite.ActualWidth - 12);
+
+                        }
+                        break;
+                    case Key.Space:
+                        jump();
+
+                        break;
+
+                    case Key.Q:
+                        can.Visibility = Visibility.Visible;
+                        btnStart.Visibility = Visibility.Hidden;
+                        break;
+                }
             }
         }
+
         private void jump()
         {
             double nextY;
@@ -105,6 +113,16 @@ namespace WpfApp2
 
                 }
             }
+        }
+    
+     
+
+        private void btnStart_Click(object sender, RoutedEventArgs e)
+        {
+            can.Visibility = Visibility.Visible;
+            btnStart.Visibility = Visibility.Hidden;
+
+
         }
     }
 }
