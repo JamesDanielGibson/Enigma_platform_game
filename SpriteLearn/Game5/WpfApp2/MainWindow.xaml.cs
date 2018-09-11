@@ -63,25 +63,25 @@ namespace WpfApp2
             switch (e.Key)
             {
                 case Key.Left:
-                    Xvel = 4;
+                   
                     nextX = Canvas.GetLeft(sprite) - Xvel;
                     Canvas.SetLeft(sprite, nextX);
-                    if (nextX < 0 || nextX + sprite.ActualWidth > can.ActualWidth && Xvel > 0)
+                    if (nextX < 0 )
                     {
 
-                        Xvel *= -1;
-                        //MessageBox.Show("");
+                        Canvas.SetLeft(sprite, 0);
+                        
                     }
                     break;
                 case Key.Right:
-                    Xvel = 4;
+                   
                     nextX = Canvas.GetLeft(sprite) + Xvel;
                     Canvas.SetLeft(sprite, nextX);
-                    if (nextX < 0 || nextX + sprite.ActualWidth > can.ActualWidth && Xvel > 0)
+                    if ( nextX + sprite.ActualWidth > can.ActualWidth )
                     {
-                        
-                        Xvel  *=-1;
-                        
+
+                        Canvas.SetLeft(sprite, can.ActualWidth-sprite.ActualWidth);
+
                     }
                     break;
             }
