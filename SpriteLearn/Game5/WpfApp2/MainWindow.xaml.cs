@@ -27,14 +27,15 @@ namespace WpfApp2
         bool stMovLeft = false;
         bool stMovRight= false;
         bool stjump = false;
-        int xDir = 4;
+        double F = -10;
+        double G = 4;
         #endregion
         public MainWindow()
         {
             InitializeComponent();
             timer = new System.Windows.Threading.DispatcherTimer();
             timer.Interval = TimeSpan.FromMilliseconds(16);
-            timer.IsEnabled = true;
+            timer.IsEnabled = false;
             timer.Tick += dispatcherTimer_Tick;
             Xvel = 4;
         }
@@ -48,8 +49,11 @@ namespace WpfApp2
         {
             MovLeft(stMovLeft);
             MovRight(stMovRight);
+            MovGrav();
             jump(stjump);
         }
+
+       
 
 
         #region event handeling
@@ -135,14 +139,30 @@ namespace WpfApp2
             }
         }
 
+        private void MovGrav()
+        {
+            if(Canvas.GetBottom(sprite)<can.ActualHeight)
+            {
+                Canvas.SetTop(sprite, Canvas.GetTop(sprite) +G);
+            }
+        }
+
         private void jump(bool st)
         {
             if (st == true) { 
                 double nextY;
-                nextY = Canvas.GetTop(sprite) - Yvel;
+                nextY = Canvas.GetTop(sprite) - F;
                 Canvas.SetTop(sprite, nextY);
              }
-            stjump = false;
+            if(F>10)
+            {
+                stjump = false;
+                F = -10;
+            }
+            else
+            {
+                F += 1;
+            }
         }
         #endregion
 
@@ -151,6 +171,7 @@ namespace WpfApp2
         {
             can.Visibility = Visibility.Visible;
             btnStart.Visibility = Visibility.Hidden;
+            timer.IsEnabled = true;
         }
         #endregion
       
