@@ -20,21 +20,29 @@ namespace WpfApp2
     /// </summary>
     public partial class MainWindow : Window
     {
-        #region declarations
+        #region Declarations
+
         System.Windows.Threading.DispatcherTimer timer;
-        double Yvel = 10;
+        
         double Xvel = 4; 
         bool stMovLeft = false;
         bool stMovRight= false;
         bool stjump = false;
-        double F = -10;
-        double G = 4;
+        
+        public const double JS = 20;
+        double F = JS;
+        public const double G = 10;
+        bool onFloor = false;
+
         #endregion
+
+        #region Main methods
+
         public MainWindow()
         {
             InitializeComponent();
             timer = new System.Windows.Threading.DispatcherTimer();
-            timer.Interval = TimeSpan.FromMilliseconds(16);
+            timer.Interval = TimeSpan.FromMilliseconds(1);
             timer.IsEnabled = false;
             timer.Tick += dispatcherTimer_Tick;
             Xvel = 4;
@@ -53,7 +61,8 @@ namespace WpfApp2
             jump(stjump);
         }
 
-       
+        #endregion
+
 
 
         #region event handeling
@@ -75,7 +84,11 @@ namespace WpfApp2
                         break; 
 
                     case Key.Space:
-                        stjump = true;
+                        if (onFloor == true)
+                        {
+                            stjump = true;
+                            onFloor = false;
+                        }
                         break;
 
                     case Key.Q:
@@ -110,7 +123,9 @@ namespace WpfApp2
         #endregion
 
 
-        #region movement
+        #region Movement
+        
+
         private void MovLeft(bool st)
         {
             if (st == true)
@@ -141,27 +156,37 @@ namespace WpfApp2
 
         private void MovGrav()
         {
-            if(Canvas.GetBottom(sprite)<can.ActualHeight)
+            if (stjump == false)
             {
-                Canvas.SetTop(sprite, Canvas.GetTop(sprite) +G);
+                
+                if (Canvas.GetTop(sprite) + sprite.ActualHeight < can.ActualHeight-5)
+                {
+                    Canvas.SetTop(sprite, Canvas.GetTop(sprite) + G);
+                }
+                else
+                {
+                    onFloor = true;
+                }
             }
+
         }
 
         private void jump(bool st)
         {
-            if (st == true) { 
-                double nextY;
-                nextY = Canvas.GetTop(sprite) - F;
-                Canvas.SetTop(sprite, nextY);
-             }
-            if(F>10)
+            if (st == true)
             {
-                stjump = false;
-                F = -10;
-            }
-            else
-            {
-                F += 1;
+                if (F > 0 )
+                {
+                    double nextY;
+                    nextY = Canvas.GetTop(sprite) - F;
+                    Canvas.SetTop(sprite, nextY);
+                    F -= 1;
+                }
+                else
+                {
+                    F = JS;
+                    stjump = false;
+                }
             }
         }
         #endregion
