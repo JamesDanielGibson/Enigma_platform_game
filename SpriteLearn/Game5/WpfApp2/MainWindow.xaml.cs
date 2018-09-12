@@ -20,18 +20,20 @@ namespace WpfApp2
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region declarations
         System.Windows.Threading.DispatcherTimer timer;
         double Yvel = 10;
         double Xvel = 4; 
-        bool left;
-        bool right;
-        //bool jump;
+        bool stMovLeft = false;
+        bool stMovRight= false;
+        bool stjump = false;
         int xDir = 4;
+        #endregion
         public MainWindow()
         {
             InitializeComponent();
             timer = new System.Windows.Threading.DispatcherTimer();
-            timer.Interval = TimeSpan.FromMilliseconds(1);
+            timer.Interval = TimeSpan.FromMilliseconds(16);
             timer.IsEnabled = true;
             timer.Tick += dispatcherTimer_Tick;
             Xvel = 4;
@@ -39,55 +41,37 @@ namespace WpfApp2
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
-            //updatePlayer();
+            updatePlayer();
         }
 
-        //private void updatePlayer()
-        //{
+        private void updatePlayer()
+        {
+            MovLeft(stMovLeft);
+            MovRight(stMovRight);
+            jump(stjump);
+        }
 
-        //    double nextX = Canvas.GetLeft(sprite) + Xvel;
-            
-           
-        //    //double nextY = Canvas.GetTop(sprite) + Yvel;
-        //    //Canvas.SetTop(sprite, nextY);
-        //    //if (nextY < 0 || nextY + sprite.ActualHeight > can.ActualHeight && Yvel > 0)
-        //    //{
-        //    //    Yvel = -Yvel;
-        //    //}
-        //}
+
+        #region event handeling
+
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (can.Visibility == Visibility.Visible) {
-                double nextX;
-
+                
+                
                 switch (e.Key)
                 {
                     case Key.Left:
-
-                        nextX = Canvas.GetLeft(sprite) - Xvel;
-                        Canvas.SetLeft(sprite, nextX);
-                        if (nextX < 0)
-                        {
-
-                            Canvas.SetLeft(sprite, -4);
-
-                        }
+                        stMovLeft = true;
                         break;
+
                     case Key.Right:
+                        stMovRight = true;
+                        break; 
 
-                        nextX = Canvas.GetLeft(sprite) + Xvel;
-                        Canvas.SetLeft(sprite, nextX);
-                        if (nextX + sprite.ActualWidth > can.ActualWidth)
-                        {
-
-                            Canvas.SetLeft(sprite, can.ActualWidth - sprite.ActualWidth - 12);
-
-                        }
-                        break;
                     case Key.Space:
-                        jump();
-
+                        stjump = true;
                         break;
 
                     case Key.Q:
@@ -95,34 +79,80 @@ namespace WpfApp2
                         btnStart.Visibility = Visibility.Hidden;
                         break;
                 }
+                
             }
         }
 
-        private void jump()
+        private void Window_KeyUp(object sender, KeyEventArgs e)
         {
-            double nextY;
-            for (int i = 10; i >= 0; i--)
+            if (can.Visibility == Visibility.Visible)
             {
-                System.Threading.Thread.Sleep(200);
-                nextY = Canvas.GetTop(sprite) - i;
-                Canvas.SetTop(sprite, nextY);
-                if (nextY<0)
+                double nextX;
+
+                switch (e.Key)
                 {
+                    case Key.Left:
+                        stMovLeft = false;
+                        break;
 
-                    Canvas.SetLeft(sprite, can.ActualHeight - sprite.ActualHeight + 12);
+                    case Key.Right:
+                        stMovRight = false;
+                        break;
 
+                }
+
+            }
+        }
+        #endregion
+
+
+        #region movement
+        private void MovLeft(bool st)
+        {
+            if (st == true)
+            {
+                double nextX;
+                nextX = Canvas.GetLeft(sprite) - Xvel;
+                Canvas.SetLeft(sprite, nextX);
+                if (nextX < 0)
+                {
+                    Canvas.SetLeft(sprite, -4);
                 }
             }
         }
-    
-     
 
+        private void MovRight(bool st)
+        {
+            if (st == true)
+            {
+                double nextX;
+                nextX = Canvas.GetLeft(sprite) + Xvel;
+                Canvas.SetLeft(sprite, nextX);
+                if (nextX + sprite.ActualWidth > can.ActualWidth)
+                {
+                    Canvas.SetLeft(sprite, can.ActualWidth - sprite.ActualWidth - 12);
+                }
+            }
+        }
+
+        private void jump(bool st)
+        {
+            if (st == true) { 
+                double nextY;
+                nextY = Canvas.GetTop(sprite) - Yvel;
+                Canvas.SetTop(sprite, nextY);
+             }
+            stjump = false;
+        }
+        #endregion
+
+        #region btnStart
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
             can.Visibility = Visibility.Visible;
             btnStart.Visibility = Visibility.Hidden;
-
-
         }
+        #endregion
+      
     }
 }
