@@ -29,7 +29,7 @@ namespace WpfApp2
         bool stMovRight= false;
         bool stjump = false;
         
-        public const double JS = 20;
+        public const double JS = 15;
         double F = JS;
         public const double G = 10;
         bool onFloor = false;
@@ -171,6 +171,11 @@ namespace WpfApp2
                 }
             }
 
+        }
+
+        private bool Onfloor()
+        {
+            return true;
         }
 
         private void jump(bool st)
