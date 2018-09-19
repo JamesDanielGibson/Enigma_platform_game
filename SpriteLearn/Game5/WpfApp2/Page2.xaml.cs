@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace WpfApp2
 {
     /// <summary>
-    /// Interaction logic for StartWindow.xaml
+    /// Interaction logic for Page2.xaml
     /// </summary>
-    public partial class StartWindow : Window
+    public partial class Page2 : Page
     {
-        public StartWindow()
+        public Page2()
         {
             InitializeComponent();
         }

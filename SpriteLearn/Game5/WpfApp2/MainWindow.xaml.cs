@@ -41,12 +41,18 @@ namespace WpfApp2
         public MainWindow()
         {
             InitializeComponent();
+            frame.NavigationService.Navigate(new Page2());
             timer = new System.Windows.Threading.DispatcherTimer();
             timer.Interval = TimeSpan.FromMilliseconds(1);
             timer.IsEnabled = false;
             timer.Tick += dispatcherTimer_Tick;
             Xvel = 4;
+
+            
         }
+
+            
+
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
@@ -201,9 +207,10 @@ namespace WpfApp2
         #region btnStart
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
-            can.Visibility = Visibility.Visible;
-            btnStart.Visibility = Visibility.Hidden;
+            //can.Visibility = Visibility.Visible;
+            //btnStart.Visibility = Visibility.Hidden;
             timer.IsEnabled = true;
+            frame.NavigationService.Navigate(new Page1());
         }
         #endregion
       

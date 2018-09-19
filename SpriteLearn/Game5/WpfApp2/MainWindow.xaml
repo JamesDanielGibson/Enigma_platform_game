@@ -10,9 +10,11 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="76*"/>
             <ColumnDefinition Width="25*"/>
-            <ColumnDefinition Width="295*"/>
+            <ColumnDefinition Width="188*"/>
+            <ColumnDefinition Width="107*"/>
         </Grid.ColumnDefinitions>
-        <Canvas x:Name="can" HorizontalAlignment="Stretch" Height = "Auto" Width ="Auto" VerticalAlignment="Stretch" Grid.ColumnSpan="3"  >
+        
+        <Canvas x:Name="can" HorizontalAlignment="Stretch" Height = "Auto" Width ="Auto" VerticalAlignment="Stretch" Grid.ColumnSpan="4"  >
             <Canvas.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="Black" Offset="0"/>
@@ -28,8 +30,10 @@
             <Image x:Name="sprite" Height="32" Canvas.Left="352" Canvas.Top="150" Width="32" Source="Sprite.png"/>
             <Rectangle x:Name="level" Fill="#FFF4F4F5" Height="10" Canvas.Left="492" Stroke="Black" Canvas.Top="360" Width="300"/>
             <Rectangle x:Name="level1" Fill="#FFF4F4F5" Height="10" Canvas.Left="189" Stroke="Black" Canvas.Top="309" Width="300"/>
+            <Frame x:Name="frame" Content="Frame" HorizontalAlignment="Left" Height="414" Margin="0,-5,0,0" VerticalAlignment="Top" Width="782" Grid.ColumnSpan="4" NavigationUIVisibility="Hidden"/>
         </Canvas>
         <Button x:Name="btnStart" Content="START" HorizontalAlignment="Left" Margin="33,34,0,0" VerticalAlignment="Top" Width="75" Click="btnStart_Click" FontSize="22" FontWeight="Bold" Background="#FF9583D1" />
+        
 
     </Grid>
 </Window>
