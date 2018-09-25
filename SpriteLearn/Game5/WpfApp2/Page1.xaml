@@ -9,7 +9,6 @@
       Title="Page1">
 
     <Grid>
-        <Canvas HorizontalAlignment="Left" Height="450" VerticalAlignment="Top" Width="800" Background="WhiteSmoke"/>
-
+        <Canvas x:Name="brderPg1" Margin="10" Background="#FFD18282"/>
     </Grid>
 </Page>

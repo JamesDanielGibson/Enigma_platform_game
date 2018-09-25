@@ -1,0 +1,1 @@
+Sprite Jumps on air under last platform
