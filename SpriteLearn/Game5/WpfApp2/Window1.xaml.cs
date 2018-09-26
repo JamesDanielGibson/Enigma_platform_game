@@ -15,16 +15,18 @@ using System.Windows.Shapes;
 namespace WpfApp2
 {
     /// <summary>
-    /// Interaction logic for StartWindow.xaml
+    /// Interaction logic for Window1.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Window1 : Window
     {
-        public MainWindow()
+        public Window1()
         {
             InitializeComponent();
-            MessageBox.Show("Window 2 OPENED");
-            SecondWindow mW = new SecondWindow();
-            mW.Show();
+        }
+        public void win_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow MW = new MainWindow();
+            MW.Show();
             this.Close();
         }
     }
