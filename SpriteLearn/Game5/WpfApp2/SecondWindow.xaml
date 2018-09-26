@@ -27,7 +27,6 @@
                     <GradientStop Color="#FFEA00CA" Offset="1"/>
                 </LinearGradientBrush>
             </Canvas.OpacityMask>
-            <Frame x:Name="frame" Content="Frame" HorizontalAlignment="Left" Height="414" Margin="0,-5,0,0" VerticalAlignment="Top" Width="782" Grid.ColumnSpan="4" NavigationUIVisibility="Hidden"/>
             <Image x:Name="sprite" Height="32" Canvas.Left="352" Canvas.Top="150" Width="32" Source="Sprite.png"/>
             <Rectangle x:Name="level" Fill="#FFF4F4F5" Height="10" Canvas.Left="492" Stroke="Black" Canvas.Top="360" Width="300"/>
             <Rectangle x:Name="level1" Fill="#FFF4F4F5" Height="10" Canvas.Left="189" Stroke="Black" Canvas.Top="309" Width="300"/>

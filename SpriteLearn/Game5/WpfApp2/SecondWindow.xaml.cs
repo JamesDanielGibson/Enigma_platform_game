@@ -167,10 +167,15 @@ namespace WpfApp2
         {
             if (stjump == false)
             {
-                if ((Canvas.GetTop(sprite) + sprite.ActualHeight > Canvas.GetTop(level))&& (Canvas.GetLeft(sprite)>= Canvas.GetLeft(level)|| Canvas.GetRight(sprite )>Canvas.GetLeft(level)))
+                if ((Canvas.GetTop(sprite) + sprite.ActualHeight > Canvas.GetTop(level)) && (Canvas.GetLeft(sprite) >= Canvas.GetLeft(level) || Canvas.GetRight(sprite) > Canvas.GetLeft(level)))
                 {
                     onFloor = true;
-                }else if (Canvas.GetTop(sprite) + sprite.ActualHeight < can.ActualHeight-5)
+                    //if (Canvas.GetBottom(sprite) < Canvas.Hei)
+                    //{
+
+                    //}
+                }
+                else if (Canvas.GetTop(sprite) + sprite.ActualHeight < can.ActualHeight-5)
                 {
                     Canvas.SetTop(sprite, Canvas.GetTop(sprite) + G);
                 }
@@ -184,6 +189,7 @@ namespace WpfApp2
 
         private bool Onfloor()
         {
+
             return true;
         }
 
