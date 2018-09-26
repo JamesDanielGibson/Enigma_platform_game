@@ -22,10 +22,13 @@ namespace WpfApp2
         public MainWindow()
         {
             InitializeComponent();
-            MessageBox.Show("Window 2 OPENED");
+        }
+        private void btnStart_Click(Object sender, RoutedEventArgs e)
+        {
             SecondWindow mW = new SecondWindow();
             mW.Show();
             this.Close();
+
         }
     }
 }

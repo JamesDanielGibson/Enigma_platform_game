@@ -45,7 +45,7 @@ namespace WpfApp2
 
             timer = new System.Windows.Threading.DispatcherTimer();
             timer.Interval = TimeSpan.FromMilliseconds(1);
-            timer.IsEnabled = false;
+            timer.IsEnabled = true;
             timer.Tick += dispatcherTimer_Tick;
             Xvel = 4;
 
@@ -99,8 +99,10 @@ namespace WpfApp2
                         break;
 
                     case Key.Q:
-                        can.Visibility = Visibility.Visible;
-                        btnStart.Visibility = Visibility.Hidden;
+                        MainWindow mW = new MainWindow();
+                        mW.Show();
+                        this.Close();
+                       
                         break;
                 }
                 
@@ -205,14 +207,7 @@ namespace WpfApp2
         }
         #endregion
 
-        #region btnStart
-        private void btnStart_Click(object sender, RoutedEventArgs e)
-        {
-            //can.Visibility = Visibility.Visible;
-            //btnStart.Visibility = Visibility.Hidden;
-            timer.IsEnabled = true;
-        }
-        #endregion
+
       
     }
 }
