@@ -162,7 +162,7 @@ namespace WpfApp2
                 }
             }
         }
-
+        
         private void MovGrav()
         {
             if (stjump == false)
@@ -170,12 +170,13 @@ namespace WpfApp2
                 if ((Canvas.GetTop(sprite) + sprite.ActualHeight > Canvas.GetTop(level)) && (Canvas.GetLeft(sprite) >= Canvas.GetLeft(level) || Canvas.GetRight(sprite) > Canvas.GetLeft(level)))
                 {
                     onFloor = true;
-                    //if (Canvas.GetBottom(sprite) < Canvas.Hei)
-                    //{
-
-                    //}
                 }
-                else if (Canvas.GetTop(sprite) + sprite.ActualHeight < can.ActualHeight-5)
+                //if (((Convert.ToInt32(can.ActualHeight)) < (Canvas.GetBottom(sprite)))) //Works exactly the same as prev except need to work out how to say any image
+                //{
+                //    onFloor = true;
+                //}
+
+                else if (Canvas.GetTop(sprite) + sprite.ActualHeight < can.ActualHeight - 5)
                 {
                     Canvas.SetTop(sprite, Canvas.GetTop(sprite) + G);
                 }
