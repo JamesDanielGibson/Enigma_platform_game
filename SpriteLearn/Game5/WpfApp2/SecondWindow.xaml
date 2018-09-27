@@ -28,7 +28,7 @@
                 </LinearGradientBrush>
             </Canvas.OpacityMask>
             <Image x:Name="sprite" Height="32" Canvas.Left="352" Canvas.Top="150" Width="32" Source="Sprite.png"/>
-            <Rectangle x:Name="level" Fill="#FFF4F4F5" Height="10" Canvas.Left="492" Stroke="Black" Canvas.Top="360" Width="300"/>
+            <Rectangle x:Name="level" Fill="#FFF4F4F5" Height="10" Canvas.Left="492" Stroke="Black" Canvas.Top="360" Width="300" />
             <Rectangle x:Name="level1" Fill="#FFF4F4F5" Height="10" Canvas.Left="189" Stroke="Black" Canvas.Top="309" Width="300"/>
         </Canvas>
         
