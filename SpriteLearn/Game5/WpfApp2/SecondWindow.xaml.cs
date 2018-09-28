@@ -34,6 +34,7 @@ namespace WpfApp2
         public const double G = 10;
         bool onFloor = false;
         List<Platforms> Images = new List<Platforms>();
+        Image i;
 
         #endregion
         
@@ -43,13 +44,14 @@ namespace WpfApp2
         {
 
             InitializeComponent();
-
+            
             timer = new System.Windows.Threading.DispatcherTimer();
             timer.Interval = TimeSpan.FromMilliseconds(1);
             timer.IsEnabled = true;
             timer.Tick += dispatcherTimer_Tick;
             Xvel = 4;
-
+            
+            new Platforms(can);
             
         }
 
@@ -166,10 +168,7 @@ namespace WpfApp2
         
         private void MovGrav()
         {
-            for (int i = 0; i < length; i++)
-            {
-               // Image.;
-            }
+
             if (stjump == false)
             {
                 //if ((Canvas.GetTop(sprite) + sprite.ActualHeight > Canvas.GetTop(level)) && (Canvas.GetLeft(sprite) >= Canvas.GetLeft(level) || Canvas.GetRight(sprite) > Canvas.GetLeft(level)))
@@ -177,7 +176,7 @@ namespace WpfApp2
                 //    onFloor = true;
 
                 //}
-                if (((Convert.ToInt32(can.ActualHeight)) < (Canvas.GetBottom(sprite))) || (Platforms.IsOn(Canvas.GetBottom(sprite), Canvas.GetLeft(sprite), Canvas.GetRight(sprite)))) //Works exactly the same as prev except need to work out how to say any image
+                if (((Convert.ToInt32(can.ActualHeight)) < (Canvas.GetBottom(sprite))))// || (Platforms.IsOn(Canvas.GetBottom(sprite), Canvas.GetLeft(sprite), Canvas.GetRight(sprite)))) //Works exactly the same as prev except need to work out how to say any image
                 {
                     onFloor = true;
                 }
