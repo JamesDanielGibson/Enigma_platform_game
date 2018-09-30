@@ -42,16 +42,17 @@ namespace WpfApp2
 
         public SecondWindow()
         {
-
+            
             InitializeComponent();
             
+            new Platforms(can, secondWindow.ActualWidth, secondWindow.ActualHeight); //For some reason Window.Actual Height is 0
             timer = new System.Windows.Threading.DispatcherTimer();
             timer.Interval = TimeSpan.FromMilliseconds(1);
             timer.IsEnabled = true;
             timer.Tick += dispatcherTimer_Tick;
             Xvel = 4;
             
-            new Platforms(can);
+            
             
         }
 
