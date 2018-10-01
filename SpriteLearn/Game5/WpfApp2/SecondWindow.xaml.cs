@@ -20,9 +20,11 @@ namespace WpfApp2
     /// </summary>
     public partial class SecondWindow : Window
     {
+        private Platforms x;
         #region Declarations
 
         System.Windows.Threading.DispatcherTimer timer;
+
         
         double Xvel = 4; 
         bool stMovLeft = false;
@@ -44,8 +46,12 @@ namespace WpfApp2
         {
             
             InitializeComponent();
-            
-            new Platforms(can, secondWindow.ActualWidth, secondWindow.ActualHeight); //For some reason Window.Actual Height is 0
+
+            //Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
+            //Arrange(new Rect(0, 0, DesiredSize.Width, DesiredSize.Height));
+
+            MessageBox.Show(Convert.ToString(can.ActualHeight));
+            x = new Platforms(can, 1200, 700, 50); //For some reason Window.Actual Height is 0 100 and 200 are Hardcoded values that need to be remove in the end
             timer = new System.Windows.Threading.DispatcherTimer();
             timer.Interval = TimeSpan.FromMilliseconds(1);
             timer.IsEnabled = true;
@@ -81,6 +87,7 @@ namespace WpfApp2
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
+
             if (can.Visibility == Visibility.Visible) {
                 
                 
@@ -162,7 +169,7 @@ namespace WpfApp2
                 Canvas.SetLeft(sprite, nextX);
                 if (nextX + sprite.ActualWidth > can.ActualWidth)
                 {
-                    Canvas.SetLeft(sprite, can.ActualWidth - sprite.ActualWidth - 12);
+                    Canvas.SetLeft(sprite,  1200 - sprite.ActualWidth -30);
                 }
             }
         }
@@ -177,7 +184,7 @@ namespace WpfApp2
                 //    onFloor = true;
 
                 //}
-                if (((Convert.ToInt32(can.ActualHeight)) < (Canvas.GetBottom(sprite))))// || (Platforms.IsOn(Canvas.GetBottom(sprite), Canvas.GetLeft(sprite), Canvas.GetRight(sprite)))) //Works exactly the same as prev except need to work out how to say any image
+                if /*(((Convert.ToInt32(can.ActualHeight))*/ ((700 < (Canvas.GetBottom(sprite))) || (x.IsOn(Canvas.GetBottom(sprite), Canvas.GetLeft(sprite), Canvas.GetRight(sprite))))// || (Platforms.IsOn(Canvas.GetBottom(sprite), Canvas.GetLeft(sprite), Canvas.GetRight(sprite)))) //Works exactly the same as prev except need to work out how to say any image
                 {
                     onFloor = true;
                 }
