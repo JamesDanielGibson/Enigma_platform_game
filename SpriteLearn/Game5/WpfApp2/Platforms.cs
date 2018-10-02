@@ -54,8 +54,8 @@ namespace WpfApp2
                 //double Right = 0;
 
                 Rectangle myRect = new Rectangle();
-                myRect.Fill = Brushes.White;
-                myRect.Height = 15;
+                myRect.Fill = Brushes.DeepSkyBlue;
+                myRect.Height = 12;
 
                     Width = rand.Next(100, 400);
                     Left = rand.Next(0, Convert.ToInt32(a));
@@ -68,18 +68,15 @@ namespace WpfApp2
 
                 myRect.Width = Width;   //Gives it a random width
 
-                rect.Add(myRect);   //Stores in list
+                //Stores in list
+                rect.Add(myRect);
 
                 Canvas.SetLeft(rect[i], Left);
-                Canvas.SetBottom(rect[i], Top);
-                can.Children.Add(rect[i]);
-                Thread.Sleep(2);
-            }
-
-
-
-
-             // Adds the rectangle to the canvas
+                Canvas.SetTop(rect[i], Top);
+                
+                can.Children.Add(rect[i]); // Adds the rectangle to the canvas
+                Thread.Sleep(4);
+            }      
 
 
 
@@ -93,12 +90,18 @@ namespace WpfApp2
         //    this.platRight = platRight;
             
         //}
-        public bool IsOn(double spriteBot, double spriteLeft, double spriteRight)
+        public bool IsOn(ref Image sprite)
         {
             for (int i = 0; i < rect.Count; i++)
             {
-                if ((spriteBot == Canvas.GetTop(rect[i])) && (spriteLeft >= Canvas.GetLeft(rect[i]) || spriteRight <= Canvas.GetRight(rect[i])))
+
+                //if (Canvas.GetBottom(sprite) == (Canvas.GetTop(rect[i])))
+                //    MessageBox.Show("");
+                ////return true;
+
+                if ((((Canvas.GetTop(sprite))+ sprite.ActualHeight) >= (Canvas.GetTop(rect[i]))) && ((Canvas.GetLeft(sprite) >= Canvas.GetLeft(rect[i]) && (Canvas.GetLeft(sprite) + sprite.ActualWidth) <= (rect[i].ActualWidth+Canvas.GetLeft(rect[i])))))
                 {
+                    
                     return true;
                 }
 

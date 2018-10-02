@@ -47,10 +47,10 @@ namespace WpfApp2
             
             InitializeComponent();
 
-            //Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
-            //Arrange(new Rect(0, 0, DesiredSize.Width, DesiredSize.Height));
+            Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
+            Arrange(new Rect(0, 0, DesiredSize.Width, DesiredSize.Height));
 
-            MessageBox.Show(Convert.ToString(can.ActualHeight));
+            //MessageBox.Show(Convert.ToString(can.ActualHeight));
             x = new Platforms(can, 1200, 700, 50); //For some reason Window.Actual Height is 0 100 and 200 are Hardcoded values that need to be remove in the end
             timer = new System.Windows.Threading.DispatcherTimer();
             timer.Interval = TimeSpan.FromMilliseconds(1);
@@ -167,6 +167,8 @@ namespace WpfApp2
                 double nextX;
                 nextX = Canvas.GetLeft(sprite) + Xvel;
                 Canvas.SetLeft(sprite, nextX);
+                //Console.WriteLine("bottom" + Canvas.GetBottom(sprite));
+                //Console.WriteLine("right" +Canvas.GetRight(sprite));
                 if (nextX + sprite.ActualWidth > can.ActualWidth)
                 {
                     Canvas.SetLeft(sprite,  1200 - sprite.ActualWidth -30);
@@ -184,7 +186,9 @@ namespace WpfApp2
                 //    onFloor = true;
 
                 //}
-                if /*(((Convert.ToInt32(can.ActualHeight))*/ ((700 < (Canvas.GetBottom(sprite))) || (x.IsOn(Canvas.GetBottom(sprite), Canvas.GetLeft(sprite), Canvas.GetRight(sprite))))// || (Platforms.IsOn(Canvas.GetBottom(sprite), Canvas.GetLeft(sprite), Canvas.GetRight(sprite)))) //Works exactly the same as prev except need to work out how to say any image
+                //MessageBox.Show(Convert.ToString(Canvas.GetBottom(sprite)));
+                //Console.WriteLine(Canvas.GetBottom(sprite));
+                if (/*700 < (Canvas.GetBottom(sprite))) && */(x.IsOn(ref sprite))) //Works exactly the same as prev except need to work out how to say any image
                 {
                     onFloor = true;
                 }
