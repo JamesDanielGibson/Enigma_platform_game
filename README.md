@@ -1,5 +1,5 @@
 # Enigma_platform_game
-The goal of this project to create a, fun and educational platform game. The game will include elements of computer litracy and mathematics.
+The goal of this project to create a fun, simple platform game. The main sprite in our game has to make his way to the transport controller that sits on the top platform in order to win the level. He must do this while avoiding various enemies along the way. 
 
 Group name: Enigma
 
@@ -7,16 +7,16 @@ Group members: James Daniel Gibson, Garad Watkins, Georgina Fiorentinos
 
 Group mentor: [Louise Poole]
 
-Project title: [LearnIT]
+Project title: [Space Game]
 
 Project page: [https://github.com/JamesDanielGibson/Enigma_platform_game]
 
-Instructions for use (allowable actions): [Provide DETAILED  instructions on how to run AND interact with your program. If we cannot run it with relative ease, it will NOT be marked! So if it needs to be saved in a specific folder, or needs Internet access, or needs anything beyond simply double clicking the executable, document all that here. This is very IMPORTANT! Also, list all forms of interaction here, so if your program allows the user to press ‘Q’ to exit, or ‘left arrow’ or ‘right arrow’ to do specific things, document that here as well. If we cannot figure out how to interact with your program and nothing is documented, it will NOT be marked!]
+Instructions for use (allowable actions): [Use the left and right buttons on the keyboard to move left and right respectively. Use the space bar to jump (double jumps are not allowed). Avoid bombs by jumping over them or not going near them at all; and avoid aliens by strategically waiting for a gap to move past them. The sprite can use his magnetic abilities to hang off the bottom of a platform, and then continue to pull himself up onto the platform (this happens when you jump to the underside of a platform to hang, and jump again to pull yourself up).]
 
 Tools used: [List and describe any .NET libraries or external tools that you imported for use in your project]
 
 Concepts used: [List ALL aspects of the CSc 102 curriculum that your project uses. So if your program uses Lists, Files, Recursion, Dictionaries, Custom classes, etc.; document them here and provide directions as to where those concepts are used in the code base. Please use the standard topics list on the Think Sharply with C# web page for the list of anticipated topics/concepts]
 
-Assumptions: [State ANY assumptions about how you expect the system will be used or run]
+Assumptions: [Our game counts the number of times you collect the transport controller in a single session and automatically resets the level after each collection. It also will reset your transport controller counter each time you die (ie. You only have one life). After you die, the game will reset the level.]
 
-Limitations: [State ANY limitations concerning what your program cannot do, though those functions may be implied by the nature of the project]
+Limitations: [Our game does not save a high score - so each time you play a session, you start from scratch. Our game does not have a multiple lives counter.]
