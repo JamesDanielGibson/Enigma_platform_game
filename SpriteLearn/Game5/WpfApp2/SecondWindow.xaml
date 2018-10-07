@@ -31,7 +31,7 @@
             </Canvas.OpacityMask>
             <Rectangle x:Name="level" Fill="#FFF4F4F5" Height="10" Canvas.Left="492" Stroke="Black" Canvas.Top="360" Width="300" Visibility="Hidden"/>
             <Rectangle x:Name="level1" Fill="#FFF4F4F5" Height="10" Canvas.Left="189" Stroke="Black" Canvas.Top="309" Width="300" Visibility="Hidden"/>
-            <Image x:Name="sprite" Height="32" Canvas.Left="352" Canvas.Top="620" Width="32" Source="Sprite.png"/>
+            <Image x:Name="sprite" Height="32" Canvas.Left="50" Canvas.Top="637" Width="32" Source="Sprite.png"/>
         </Canvas>
 
 

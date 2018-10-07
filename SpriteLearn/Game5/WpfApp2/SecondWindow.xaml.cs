@@ -101,7 +101,16 @@ namespace WpfApp2
             else if (x.BombDetection(can, ref sprite))
             {
                 timer.IsEnabled = false;
-                MessageBox.Show("You died... ");
+                MessageBox.Show("You died... TO A BOMB");
+
+                SecondWindow mW = new SecondWindow();
+                mW.Show();
+                Close();
+            }
+            else if (EnemyDetect())
+            {
+                timer.IsEnabled = false;
+                MessageBox.Show("You died... TO AN ALIEN");
 
                 SecondWindow mW = new SecondWindow();
                 mW.Show();
@@ -161,6 +170,8 @@ namespace WpfApp2
                         {
                             stjump = true;
                             onFloor = false;
+                            BitmapImage bity = new BitmapImage(new Uri("pack://application:,,,/Jump.png"));
+                            sprite.Source = bity;
                         }
                         break;
 
@@ -207,6 +218,8 @@ namespace WpfApp2
         {
             if (st == true)
             {
+                BitmapImage bity = new BitmapImage(new Uri("pack://application:,,,/Left1.png"));
+                sprite.Source = bity;
                 double nextX;
                 nextX = Canvas.GetLeft(sprite) - Xvel;
                 Canvas.SetLeft(sprite, nextX);
@@ -221,6 +234,8 @@ namespace WpfApp2
         {
             if (st == true)
             {
+                BitmapImage bity = new BitmapImage(new Uri("pack://application:,,,/Right1.png"));
+                sprite.Source = bity;
                 double nextX;
                 nextX = Canvas.GetLeft(sprite) + Xvel;
                 Canvas.SetLeft(sprite, nextX);
@@ -236,6 +251,7 @@ namespace WpfApp2
         private void MovGrav()
         {
 
+
             //if (stjump == true) {
             //    if (x.Touch(ref sprite))
             //    {
@@ -245,6 +261,7 @@ namespace WpfApp2
             //}
             if (stjump == false)
             {
+
                 //if ((Canvas.GetTop(sprite) + sprite.ActualHeight > Canvas.GetTop(level)) && (Canvas.GetLeft(sprite) >= Canvas.GetLeft(level) || Canvas.GetRight(sprite) > Canvas.GetLeft(level)))
                 //{
                 //    onFloor = true;
@@ -280,6 +297,7 @@ namespace WpfApp2
 
         private void jump(bool st)
         {
+
             if (stjump && !onFloor)
             {
                 if (st == true)
@@ -301,7 +319,23 @@ namespace WpfApp2
             }
         }
         #endregion
-
+        private bool EnemyDetect()
+        {
+            for (int i = 0; i < enemies.Count; i++)//each (pBomb bomb in bombs)
+            {
+                double TopEnemy = Canvas.GetTop(enemies[i].EnemyPlayer);
+                double LeftEnemy =  Canvas.GetLeft(enemies[i].EnemyPlayer);
+                double TopSprite = Canvas.GetTop(sprite);
+                double LeftSprite = Canvas.GetLeft(sprite);
+                //(TopSprite + 32 >= TopBomb && TopSprite <= TopBomb
+                if (((LeftSprite+32 >= LeftEnemy && LeftSprite <= LeftEnemy+32)  && (TopSprite + 32 >= TopEnemy && TopSprite -10 <= TopEnemy)))
+                {
+                    //MessageBox.Show(LeftSprite + 32+" " + LeftEnemy+" \n" + LeftSprite+" " + (LeftEnemy+ 32));
+                    return true;
+                }
+            }
+            return false;
+        }
 
       
     }

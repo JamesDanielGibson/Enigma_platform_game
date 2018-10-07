@@ -22,7 +22,8 @@ namespace WpfApp2
         public double GetTop = 0;
         public int Plat = 0;
         private Rectangle plats = new Rectangle();
-        private Image EnemyPlayer = new Image();
+        public Image EnemyPlayer = new Image();
+        
         //private Random randoming = new Random();
         private const double moveSpeed = 2;
         private double dir = 1;
@@ -88,7 +89,7 @@ namespace WpfApp2
             }
             if (Canvas.GetLeft(EnemyPlayer) <= Canvas.GetLeft(plats))
             {
-                Canvas.SetLeft(EnemyPlayer, Canvas.GetLeft(EnemyPlayer) + 1);
+                Canvas.SetLeft(EnemyPlayer, Canvas.GetLeft(EnemyPlayer) +  1);
                 dir = 1;
             }
         }

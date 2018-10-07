@@ -95,7 +95,7 @@ namespace WpfApp2
                 //Thread.Sleep(4);
             }
             Keys(can);
-            int randomed = randoming.Next(0,5);
+            int randomed = randoming.Next(5,15);
             for (int i = 0; i < randomed; i++)
             {
                 pBomb bomb = new pBomb(can, rect, randoming);

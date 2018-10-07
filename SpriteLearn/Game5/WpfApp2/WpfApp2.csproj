@@ -54,6 +54,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DeathCounter.cs" />
     <Compile Include="pBomb.cs" />
     <Compile Include="Instructions.xaml.cs">
       <DependentUpon>Instructions.xaml</DependentUpon>
@@ -61,6 +62,7 @@
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Stats.cs" />
     <Page Include="Instructions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -142,6 +144,25 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="SButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Right2.png" />
+    <Resource Include="Right3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Right1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Jump.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Left1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Deaths.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
