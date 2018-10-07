@@ -54,9 +54,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="pBomb.cs" />
+    <Compile Include="Instructions.xaml.cs">
+      <DependentUpon>Instructions.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Instructions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SecondWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -66,6 +74,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Platforms.cs" />
+    <Compile Include="pEnemyPlayer.cs" />
     <Compile Include="SecondWindow.xaml.cs">
       <DependentUpon>SecondWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -105,7 +114,34 @@
     <Resource Include="Sprite.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Platform.bmp" />
+    <Resource Include="key.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="RoomBck.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="bombDiggety.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ArrowKeyLeft.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="GalaxyBar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ArrowKeyRight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Alien.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="RoomBck1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="QButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SButton.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

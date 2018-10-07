@@ -15,28 +15,20 @@ using System.Windows.Shapes;
 namespace WpfApp2
 {
     /// <summary>
-    /// Interaction logic for StartWindow.xaml
+    /// Interaction logic for Instructions.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Instructions : Window
     {
-        public MainWindow()
+        public Instructions()
         {
             InitializeComponent();
         }
-        private void btnStart_Click(Object sender, RoutedEventArgs e)
-        {
-            SecondWindow mW = new SecondWindow();
-            mW.Show();
-            this.Close();
 
-        }
-
-        private void btnInst_Click(object sender, RoutedEventArgs e)
+        private void btnReturn_Click(object sender, RoutedEventArgs e)
         {
-            Instructions mW = new Instructions();
+            MainWindow mW = new MainWindow();
             mW.Show();
             Close();
-            
         }
     }
 }

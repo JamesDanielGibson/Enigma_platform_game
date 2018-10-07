@@ -1,0 +1,38 @@
+﻿<Window x:Class="WpfApp2.Instructions"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2"
+        mc:Ignorable="d"
+        Title="Instructions" Height="700" Width="1200" MaxHeight="800" MaxWidth="1200" WindowState = "Maximized" ResizeMode="NoResize">
+    <Grid>
+        <Image x:Name="BckGround" HorizontalAlignment="Left" Height="800" VerticalAlignment="Top" Width="1300"  Source="RoomBck1.png" Margin="2,0,-108,-129">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.109"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Image HorizontalAlignment="Left" Height="75" VerticalAlignment="Top" Width="75" Margin="32,164,0,0" Source="pack://application:,,,/ArrowKeyLeft.png" RenderTransformOrigin="0.173,-1.173"/>
+        <Image HorizontalAlignment="Left" Height="75" VerticalAlignment="Top" Width="75" Margin="552,164,0,0" Source="pack://application:,,,/ArrowKeyRight.png" RenderTransformOrigin="0.173,-1.173"/>
+        <Image HorizontalAlignment="Left" Height="90" VerticalAlignment="Top" Width="350" Margin="146,159,0,0" Source="pack://application:,,,/GalaxyBar.png" RenderTransformOrigin="0.173,-1.173"/>
+        <Label Content="               Movement keys" HorizontalAlignment="Left" Height="64" Margin="32,10,0,597" VerticalAlignment="Center" Width="595" Background="#00000000" FontSize="36" FontWeight="Bold" Foreground="White"/>
+        <Label Content="  Left" HorizontalAlignment="Left" Height="56" Margin="32,244,0,0" VerticalAlignment="Top" Width="75" FontSize="22" Foreground="White" FontWeight="Bold"/>
+        <Label Content=" Right" HorizontalAlignment="Left" Height="56" Margin="552,244,0,0" VerticalAlignment="Top" Width="75" FontSize="22" Foreground="White" FontWeight="Bold"/>
+        <Label Content=" Jump" HorizontalAlignment="Left" Height="56" Margin="284,244,0,0" VerticalAlignment="Top" Width="75" FontSize="22" Foreground="White" FontWeight="Bold"/>
+        <Image HorizontalAlignment="Left" Height="90" Margin="32,327,0,0" VerticalAlignment="Top" Width="75" Source="SButton.png"/>
+        <Image HorizontalAlignment="Left" Height="85" Margin="552,327,0,0" VerticalAlignment="Top" Width="75" Source="QButton.png"/>
+        <Label Content="Reset level" HorizontalAlignment="Left" Height="56" Margin="10,417,0,0" VerticalAlignment="Top" Width="137" FontSize="22" Foreground="White" FontWeight="Bold"/>
+        <Label Content="Quit/Rage" HorizontalAlignment="Left" Height="56" Margin="522,412,0,0" VerticalAlignment="Top" Width="129" FontSize="22" Foreground="White" FontWeight="Bold"/>
+        <Image HorizontalAlignment="Left" Height="90" Margin="904,79,0,0" VerticalAlignment="Top" Width="75" Source="Key.png" RenderTransformOrigin="4.92,-0.867"/>
+        <Label Content="This is your goal. Find it and capture it." HorizontalAlignment="Left" Height="40" Margin="736,25,0,0" VerticalAlignment="Top" Width="428" FontSize="22" Foreground="White" FontWeight="Bold"/>
+        <Label Content="       These will kill you. Avoid them!" HorizontalAlignment="Left" Height="40" Margin="736,387,0,0" VerticalAlignment="Top" Width="428" FontSize="22" Foreground="White" FontWeight="Bold"/>
+        <Image HorizontalAlignment="Left" Height="90" Margin="1012,465,0,0" VerticalAlignment="Top" Width="75" Source="Alien.png" RenderTransformOrigin="4.92,-0.867"/>
+        <Image HorizontalAlignment="Left" Height="90" Margin="794,465,0,0" VerticalAlignment="Top" Width="75" Source="bombDiggety.png" RenderTransformOrigin="4.92,-0.867"/>
+        <Button x:Name="btnReturn" Content="Return" HorizontalAlignment="Left" Height="65" Margin="984,624,0,-18" VerticalAlignment="Top" Width="180" FontSize="36" Click="btnReturn_Click"/>
+    </Grid>
+</Window>

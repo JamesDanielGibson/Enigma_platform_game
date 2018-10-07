@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Threading;
 
 namespace WpfApp2
 {
@@ -21,25 +22,26 @@ namespace WpfApp2
     public partial class SecondWindow : Window
     {
         private Platforms x;
+        private pEnemyPlayer enemy;
         #region Declarations
 
         System.Windows.Threading.DispatcherTimer timer;
 
         
-        double Xvel = 4; 
+        double Xvel = 0.4; 
         bool stMovLeft = false;
         bool stMovRight= false;
         bool stjump = false;
         
         public const double JS = 15;
         double F = JS;
-        public const double G = 10;
+        public const double G = 3;
         bool onFloor = false;
-        List<Platforms> Images = new List<Platforms>();
-        Image i;
+        //List<Platforms> Images = new List<Platforms>();
+        List<pEnemyPlayer> enemies = new List<pEnemyPlayer>();
 
         #endregion
-        
+
         #region Main methods
 
         public SecondWindow()
@@ -51,15 +53,24 @@ namespace WpfApp2
             Arrange(new Rect(0, 0, DesiredSize.Width, DesiredSize.Height));
 
             //MessageBox.Show(Convert.ToString(can.ActualHeight));
-            x = new Platforms(can, 1200, 700, 50); //For some reason Window.Actual Height is 0 100 and 200 are Hardcoded values that need to be remove in the end
+            x = new Platforms(can, 1200, 700, 10); //For some reason Window.Actual Height is 0 100 and 200 are Hardcoded values that need to be remove in the end
+            Random randomed = new Random();
+            int intCh = randomed.Next(0,4);
+
+            for (int i = 0; i < 4; i++)
+            {
+                enemy = new pEnemyPlayer(can, x.rect, intCh, randomed);
+                enemies.Add(enemy);
+            }
+           
+
+
+
             timer = new System.Windows.Threading.DispatcherTimer();
-            timer.Interval = TimeSpan.FromMilliseconds(1);
+            timer.Interval = TimeSpan.FromMilliseconds(0.5);
             timer.IsEnabled = true;
             timer.Tick += dispatcherTimer_Tick;
             Xvel = 4;
-            
-            
-            
         }
 
             
@@ -68,14 +79,58 @@ namespace WpfApp2
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
             updatePlayer();
+            updateEnemy();
+            update();
+            
         }
+        #region Update
+        private void update()
+        {
+
+            if (x.KeyDetection(can, ref sprite))
+            {
+                timer.IsEnabled = false;
+                MessageBox.Show("Congratulations you have completed the level... Prepare to die in next one!!!!!");
+                SecondWindow mW = new SecondWindow();
+                Close();
+
+                mW.Show();
+
+                //#lol
+            }
+            else if (x.BombDetection(can, ref sprite))
+            {
+                timer.IsEnabled = false;
+                MessageBox.Show("You died... ");
+
+                SecondWindow mW = new SecondWindow();
+                mW.Show();
+                Close();
+            }
+
+        }
+        #endregion
+
+        private void updateEnemy()
+        {
+            for (int i = 0; i < enemies.Count; i++)
+            {
+                enemies[i].EnemyMove();
+            }
+            
+        }
+
+
 
         private void updatePlayer()
         {
+
             MovLeft(stMovLeft);
-            MovRight(stMovRight);
-            MovGrav();
+            //MovGrav();
+            MovRight(stMovRight);// x.IsOn(ref sprite);
+            //MovGrav();
             jump(stjump);
+            MovGrav();
         }
 
         #endregion
@@ -110,11 +165,13 @@ namespace WpfApp2
                         break;
 
                     case Key.Q:
-                        MainWindow mW = new MainWindow();
+                       MainWindow mW = new MainWindow();
                         mW.Show();
-                        this.Close();
-                       
+                        Close();                
                         break;
+
+                    case Key.S: SecondWindow mw = new SecondWindow(); mw.Show(); this.Close(); break;
+
                 }
                 
             }
@@ -179,6 +236,13 @@ namespace WpfApp2
         private void MovGrav()
         {
 
+            //if (stjump == true) {
+            //    if (x.Touch(ref sprite))
+            //    {
+            //        stjump = false;
+            //        onFloor = false;
+            //    }
+            //}
             if (stjump == false)
             {
                 //if ((Canvas.GetTop(sprite) + sprite.ActualHeight > Canvas.GetTop(level)) && (Canvas.GetLeft(sprite) >= Canvas.GetLeft(level) || Canvas.GetRight(sprite) > Canvas.GetLeft(level)))
@@ -188,18 +252,21 @@ namespace WpfApp2
                 //}
                 //MessageBox.Show(Convert.ToString(Canvas.GetBottom(sprite)));
                 //Console.WriteLine(Canvas.GetBottom(sprite));
-                if (/*700 < (Canvas.GetBottom(sprite))) && */(x.IsOn(ref sprite))) //Works exactly the same as prev except need to work out how to say any image
+
+                if ((x.IsOn(ref sprite) || ((Canvas.GetTop(sprite) - ActualHeight <= 650) && Canvas.GetTop(sprite) - ActualHeight >= 640))) //&& ((Canvas.GetTop(sprite) - ActualHeight >= 700) && Canvas.GetTop(sprite) - ActualHeight <= 690)  ) //Works exactly the same as prev except need to work out how to say any image
                 {
                     onFloor = true;
                 }
 
-                else if (Canvas.GetTop(sprite) + sprite.ActualHeight < can.ActualHeight - 5)
-                {
-                    Canvas.SetTop(sprite, Canvas.GetTop(sprite) + G);
-                }
+                //else if (Canvas.GetTop(sprite) + sprite.ActualHeight < can.ActualHeight - 5)
+                //{
+                //    Canvas.SetTop(sprite, Canvas.GetTop(sprite) + G);
+                //    onFloor = true;
+                //}
                 else
                 {
-                    onFloor = true;
+                    Canvas.SetTop(sprite, Canvas.GetTop(sprite) + G);
+                    onFloor = false;
                 }
             }
 
@@ -213,19 +280,23 @@ namespace WpfApp2
 
         private void jump(bool st)
         {
-            if (st == true)
+            if (stjump && !onFloor)
             {
-                if (F > 0 )
+                if (st == true)
                 {
-                    double nextY;
-                    nextY = Canvas.GetTop(sprite) - F;
-                    Canvas.SetTop(sprite, nextY);
-                    F -= 1;
-                }
-                else
-                {
-                    F = JS;
-                    stjump = false;
+                    if (F > 0)
+                    {
+                        double nextY;
+                        nextY = Canvas.GetTop(sprite) - F;
+                        Canvas.SetTop(sprite, nextY);
+                        F -= 1;
+                        onFloor = false;
+                    }
+                    else
+                    {
+                        F = JS;
+                        stjump = false;
+                    }
                 }
             }
         }

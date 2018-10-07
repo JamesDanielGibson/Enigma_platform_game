@@ -5,27 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp2"
         mc:Ignorable="d"
-        Title="StartWindow" Height="Auto" Width="Auto">
+        Title="StartWindow" Height="800" Width="1200" MaxHeight="800" MaxWidth="1200" WindowState="Maximized" 
+         Icon="Sprite.png">
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            
-        </Grid.RowDefinitions>
 
-        <Button Name ="btnStart" Content="Start" Grid.Row="0" Grid.Column ="0" Click="btnStart_Click"></Button>
-            
+        <Image x:Name="BckGround" HorizontalAlignment="Left" Height="796" VerticalAlignment="Top" Width="Auto"  Source="RoomBck.png"  RenderTransformOrigin="0.5,0.5" Margin="0,0,0,-27">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.109"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+
+        <Button x:Name ="btnStart" Content="Start"  Click="btnStart_Click" Margin="10,671,992,10" FontSize="35"/>
+        <Image HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100"/>
+        <Button x:Name="btnInst" Content="Instructions"  HorizontalAlignment="Left" Height="90" Margin="958,10,0,0" VerticalAlignment="Top" Width="190" Click="btnInst_Click" FontSize="35"/>
+
     </Grid>
 </Window>
