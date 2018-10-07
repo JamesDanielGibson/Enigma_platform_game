@@ -7,32 +7,28 @@ using System.IO;
 
 namespace WpfApp2
 {
-    class DeathCounter
+    class Success
     {
-        public DeathCounter()
+        public Success(string user)
         {
-            
-            StreamReader deathsFileRead = new StreamReader("J:\\Deaths.txt");
 
-            string y = deathsFileRead.ReadLine();
+            StreamReader deathsFileRead = new StreamReader("J:\\Passed.txt");
+
             string x = deathsFileRead.ReadLine();
             
+
             int number = 0;
             if (!(x == null))
             {
                 number = Convert.ToInt32(x);
             }
-            
+                
             deathsFileRead.Close();
-            
-            StreamWriter deathsFile = new StreamWriter("J:\\Deaths.txt");
-            deathsFile.WriteLine(y);
-            deathsFile.WriteLine((number + 1));
+
+            StreamWriter deathsFile = new StreamWriter("J:\\Passed.txt");
+            deathsFile.WriteLine(number + 1);
             
             deathsFile.Close();
         }
-
-       
-        
     }
 }

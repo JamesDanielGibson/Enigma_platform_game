@@ -24,6 +24,9 @@
         <Button x:Name ="btnStart" Content="Start"  Click="btnStart_Click" Margin="10,671,992,10" FontSize="35"/>
         <Image HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100"/>
         <Button x:Name="btnInst" Content="Instructions"  HorizontalAlignment="Left" Height="90" Margin="958,10,0,0" VerticalAlignment="Top" Width="190" Click="btnInst_Click" FontSize="35"/>
+        <TextBox x:Name="txtScorebox" Height="440" Margin="392,0,0,319" TextWrapping="Wrap" Text="High Scores:" VerticalAlignment="Bottom" Width="234" Background="{x:Null}" Foreground="White" FontSize="22" BorderBrush="Black" BorderThickness="4"/>
+        <TextBox x:Name="txtUsername" HorizontalAlignment="Left" Height="77" Margin="10,270,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="307" Background="{x:Null}" Foreground="White" FontSize="22" BorderBrush="Black" BorderThickness="4"/>
+        <Label Content="Enter a Username in the box bellow " HorizontalAlignment="Left" Height="32" Margin="10,233,0,0" VerticalAlignment="Top" Width="307" FontSize="18" Foreground="White"/>
 
     </Grid>
 </Window>

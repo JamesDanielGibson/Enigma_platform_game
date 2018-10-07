@@ -63,6 +63,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Stats.cs" />
+    <Compile Include="Success.cs" />
     <Page Include="Instructions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

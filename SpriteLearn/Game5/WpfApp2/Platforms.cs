@@ -30,6 +30,7 @@ namespace WpfApp2
         public double platRight = 0;
         public double ActualWidth = 0;
         private double ActualHeight = 0;
+        
         //BitmapImage image1 = new BitmapImage(new Uri(location + "Platform.bmp"));
         public Platforms(Canvas can, double a, double b, int PlatFormNumber) //Creates the platforms, Mostly speced need to random the horizontal depth/ verticle, Each time this is run it creates a new one
         { //this has to be run before program starts so the platforms need to be created before.

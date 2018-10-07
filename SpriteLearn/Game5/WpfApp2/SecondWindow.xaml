@@ -32,6 +32,8 @@
             <Rectangle x:Name="level" Fill="#FFF4F4F5" Height="10" Canvas.Left="492" Stroke="Black" Canvas.Top="360" Width="300" Visibility="Hidden"/>
             <Rectangle x:Name="level1" Fill="#FFF4F4F5" Height="10" Canvas.Left="189" Stroke="Black" Canvas.Top="309" Width="300" Visibility="Hidden"/>
             <Image x:Name="sprite" Height="32" Canvas.Left="50" Canvas.Top="637" Width="32" Source="Sprite.png"/>
+            <Label x:Name="lblDeaths" Height="25" Width="349" Content="Deaths: "/>
+            <Label x:Name="lblSuccess" Height="25" Width="349" Content="Level:  " Canvas.Top="25"/>
         </Canvas>
 
 

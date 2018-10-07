@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Threading;
+using System.IO;
 
 namespace WpfApp2
 {
@@ -37,6 +38,7 @@ namespace WpfApp2
         double F = JS;
         public const double G = 3;
         bool onFloor = false;
+        public string username;
         //List<Platforms> Images = new List<Platforms>();
         List<pEnemyPlayer> enemies = new List<pEnemyPlayer>();
 
@@ -56,6 +58,21 @@ namespace WpfApp2
             x = new Platforms(can, 1200, 700, 10); //For some reason Window.Actual Height is 0 100 and 200 are Hardcoded values that need to be remove in the end
             Random randomed = new Random();
             int intCh = randomed.Next(0,4);
+            //StreamWriter passed = new StreamWriter("J:\\Passed.txt");
+            //passed.Close();
+            StreamReader passes = new StreamReader("J:\\Passed.txt");
+            string pss = passes.ReadLine();
+            passes.Close();
+            lblSuccess.Content = "Level:  " +pss;
+
+            //StreamWriter deathst = new StreamWriter("J:\\Deaths.txt");
+            //deathst.Close();
+            StreamReader deaths = new StreamReader("J:\\Deaths.txt");
+            string dth = deaths.ReadLine();
+
+            deaths.Close();
+            lblDeaths.Content = ("Deaths: " + dth);
+
 
             for (int i = 0; i < 4; i++)
             {
@@ -91,6 +108,7 @@ namespace WpfApp2
             {
                 timer.IsEnabled = false;
                 MessageBox.Show("Congratulations you have completed the level... Prepare to die in next one!!!!!");
+                Success x = new Success(username);
                 SecondWindow mW = new SecondWindow();
                 Close();
 
@@ -103,7 +121,10 @@ namespace WpfApp2
                 timer.IsEnabled = false;
                 MessageBox.Show("You died... TO A BOMB");
 
+                DeathCounter x = new DeathCounter();
+
                 SecondWindow mW = new SecondWindow();
+
                 mW.Show();
                 Close();
             }
@@ -111,6 +132,8 @@ namespace WpfApp2
             {
                 timer.IsEnabled = false;
                 MessageBox.Show("You died... TO AN ALIEN");
+
+                DeathCounter x = new DeathCounter();
 
                 SecondWindow mW = new SecondWindow();
                 mW.Show();
@@ -176,12 +199,13 @@ namespace WpfApp2
                         break;
 
                     case Key.Q:
-                       MainWindow mW = new MainWindow();
+
+                        MainWindow mW = new MainWindow();
                         mW.Show();
                         Close();                
                         break;
 
-                    case Key.S: SecondWindow mw = new SecondWindow(); mw.Show(); this.Close(); break;
+                    case Key.S: SecondWindow mw = new SecondWindow(); mw.Show(); this.Close(); DeathCounter x = new DeathCounter(); break;
 
                 }
                 
@@ -337,6 +361,9 @@ namespace WpfApp2
             return false;
         }
 
-      
+      public void  retUser(string user)
+        {
+            username = user;
+        }
     }
 }
