@@ -11,7 +11,11 @@ Project title: [Space Game]
 
 Project page: [https://github.com/JamesDanielGibson/Enigma_platform_game]
 
-Instructions for use (allowable actions): [Use the left and right buttons on the keyboard to move left and right respectively. Use the space bar to jump (double jumps are not allowed). Avoid bombs by jumping over them or not going near them at all; and avoid aliens by strategically waiting for a gap to move past them. The sprite can use his magnetic abilities to hang off the bottom of a platform, and then continue to pull himself up onto the platform (this happens when you jump to the underside of a platform to hang, and jump again to pull yourself up).]
+Instructions for use (allowable actions): [
+- Use the left and right buttons on the keyboard to move left and right respectively. 
+- Use the space bar to jump (double jumps are not allowed). 
+- Avoid bombs by jumping over them or not going near them at all; and avoid aliens by strategically waiting for a gap to move past them. 
+- The sprite can use his magnetic abilities to hang off the bottom of a platform, and then continue to pull himself up onto the platform (this happens when you jump to the underside of a platform to hang, and jump again to pull yourself up).]
 
 Tools used: [List and describe any .NET libraries or external tools that you imported for use in your project]
 
