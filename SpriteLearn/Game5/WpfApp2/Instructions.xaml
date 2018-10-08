@@ -34,5 +34,9 @@
         <Image HorizontalAlignment="Left" Height="90" Margin="1012,465,0,0" VerticalAlignment="Top" Width="75" Source="Alien.png" RenderTransformOrigin="4.92,-0.867"/>
         <Image HorizontalAlignment="Left" Height="90" Margin="794,465,0,0" VerticalAlignment="Top" Width="75" Source="bombDiggety.png" RenderTransformOrigin="4.92,-0.867"/>
         <Button x:Name="btnReturn" Content="Return" HorizontalAlignment="Left" Height="65" Margin="984,624,0,-18" VerticalAlignment="Top" Width="180" FontSize="36" Click="btnReturn_Click"/>
+        <Label Content="There is a magnetic field," HorizontalAlignment="Left" Height="56" Margin="10,544,0,0" VerticalAlignment="Top" Width="273" FontSize="22" Foreground="White" FontWeight="Bold"/>
+        <Label Content="that allows it to stick " HorizontalAlignment="Left" Height="56" Margin="10,576,0,0" VerticalAlignment="Top" Width="273" FontSize="22" Foreground="White" FontWeight="Bold"/>
+        <Label Content="to platforms." HorizontalAlignment="Left" Height="56" Margin="10,605,0,0" VerticalAlignment="Top" Width="273" FontSize="22" Foreground="White" FontWeight="Bold"/>
+        <Image HorizontalAlignment="Left" Height="90" Margin="10,465,0,0" VerticalAlignment="Top" Width="139" Source="Magnet.png" RenderTransformOrigin="0.627,1.833"/>
     </Grid>
 </Window>

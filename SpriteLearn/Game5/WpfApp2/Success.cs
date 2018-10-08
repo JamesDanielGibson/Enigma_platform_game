@@ -12,7 +12,7 @@ namespace WpfApp2
         public Success(string user)
         {
 
-            StreamReader deathsFileRead = new StreamReader("J:\\Passed.txt");
+            StreamReader deathsFileRead = new StreamReader(/*"J:\\*/"Passed.txt");
 
             string x = deathsFileRead.ReadLine();
             
@@ -25,7 +25,7 @@ namespace WpfApp2
                 
             deathsFileRead.Close();
 
-            StreamWriter deathsFile = new StreamWriter("J:\\Passed.txt");
+            StreamWriter deathsFile = new StreamWriter(/*"J:\\*/"Passed.txt");
             deathsFile.WriteLine(number + 1);
             
             deathsFile.Close();

@@ -60,14 +60,15 @@ namespace WpfApp2
             int intCh = randomed.Next(0,4);
             //StreamWriter passed = new StreamWriter("J:\\Passed.txt");
             //passed.Close();
-            StreamReader passes = new StreamReader("J:\\Passed.txt");
+            StreamReader passes = new StreamReader(/*"J:\\*/"Passed.txt");
             string pss = passes.ReadLine();
             passes.Close();
             lblSuccess.Content = "Level:  " +pss;
 
             //StreamWriter deathst = new StreamWriter("J:\\Deaths.txt");
             //deathst.Close();
-            StreamReader deaths = new StreamReader("J:\\Deaths.txt");
+            StreamReader deaths = new StreamReader(/*"J:\\Deaths.txt"*/"Deaths.txt" );
+            deaths.ReadLine();
             string dth = deaths.ReadLine();
 
             deaths.Close();
@@ -199,7 +200,7 @@ namespace WpfApp2
                         break;
 
                     case Key.Q:
-
+                        HighScore();
                         MainWindow mW = new MainWindow();
                         mW.Show();
                         Close();                
@@ -365,5 +366,68 @@ namespace WpfApp2
         {
             username = user;
         }
+        private void HighScore()
+        {
+            List<string> lines = new List<string>();
+
+            string SecondLast = "";
+            string Last = "";
+
+            StreamReader x = new StreamReader("Stats.txt");
+            string file = x.ReadToEnd();
+
+            string[] Lines = file.Split('\n');
+            lines = Lines.ToList();
+
+            int TotalLines = lines.Count();
+            if (TotalLines >= 3)
+            {
+                Last = lines[TotalLines - 2];
+                SecondLast = lines[TotalLines - 3];
+            }
+            x.Close();
+            StreamWriter Flusher = new StreamWriter("Stats.txt");
+            Flusher.Flush();
+            Flusher.Close();
+
+
+            try
+            {
+                StreamReader read = new StreamReader("HighScore.txt");
+                read.Close();
+            }
+
+            catch(Exception e)
+            {
+                StreamWriter tester = new StreamWriter("HighScore.txt");
+                tester.Close();
+            }
+
+            List<string> saved = Save();
+            StreamWriter write = new StreamWriter("HighScore.txt");
+            for (int i = 0; i < saved.Count; i++)
+            {
+                write.WriteLine(saved[i]);
+            }
+            write.WriteLine(SecondLast);
+            write.WriteLine(Last);
+            write.Close();
+
+        }
+        private List<string> Save()
+        {
+            List<string> lines = new List<string>();
+            StreamReader x = new StreamReader("HighScore.txt");
+            string file = x.ReadToEnd();
+
+            string[] Lines = file.Split('\n');
+            lines = Lines.ToList();
+            int TotalLines = lines.Count();
+            x.Close();
+            return lines;
+
+        }
+
+
     }
 }

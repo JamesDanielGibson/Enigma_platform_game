@@ -12,7 +12,7 @@ namespace WpfApp2
         public DeathCounter()
         {
             
-            StreamReader deathsFileRead = new StreamReader("J:\\Deaths.txt");
+            StreamReader deathsFileRead = new StreamReader(/*"J:\\*/"Deaths.txt");
 
             string y = deathsFileRead.ReadLine();
             string x = deathsFileRead.ReadLine();
@@ -25,9 +25,11 @@ namespace WpfApp2
             
             deathsFileRead.Close();
             
-            StreamWriter deathsFile = new StreamWriter("J:\\Deaths.txt");
+            StreamWriter deathsFile = new StreamWriter(/*"J:\\*/"Deaths.txt");
             deathsFile.WriteLine(y);
             deathsFile.WriteLine((number + 1));
+            
+            //deathsFile.WriteLine((number + 1));
             
             deathsFile.Close();
         }

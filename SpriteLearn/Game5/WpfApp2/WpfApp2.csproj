@@ -165,5 +165,17 @@
   <ItemGroup>
     <Resource Include="Deaths.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Passed.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Stats.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Emigma logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Magnet.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
