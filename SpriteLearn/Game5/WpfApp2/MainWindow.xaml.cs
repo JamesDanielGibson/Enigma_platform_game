@@ -24,10 +24,34 @@ namespace WpfApp2
         public string[] Lines;
         public MainWindow()
         {
+            string[] y = { "Deaths.txt", "Passed.txt", "Stats.txt", "HighScore.txt" };
+
+
+
+            for (int i = 0; i < y.Length; i++)
+            {
+                try
+                {
+                    StreamReader x = new StreamReader(y[i]);
+                    x.Close();
+                }
+                catch (Exception)
+                {
+                    StreamWriter x = new StreamWriter(y[i]);
+                    x.Close();
+                }
+
+            }
+
+
+
+
             InitializeComponent();
-            Score();
+
+
             
 
+            
 
 
 
@@ -65,81 +89,6 @@ namespace WpfApp2
             Close();
             
         }
-        private void Score()
-        {
-            string CompyLineUser = "";
-            string CompyLineDeaths = "";
-            string CompyLinePassed = "";
-            int Score = 0;
-           
-            
-            string user = "";
-            int score = 0;
-            List<string> lines = new List<string>();
-            
-            try
-            {
-                
-
-                StreamReader tesrer = new StreamReader("Stats.txt");
-                tesrer.Close();
-
-            }
-            catch(Exception e)
-            {
-                StreamWriter x = new StreamWriter(/*"J:\\*/"Stats.txt");
-                x.Close();
-            }
-
-
-            StreamReader reader3 = new StreamReader("Stats.txt");
-            string file = reader3.ReadToEnd();
-            reader3.Close();
-
-            string[] Lines = file.Split('\n');
-            lines = Lines.ToList();
-
-
-
-
-            StreamReader reader = new StreamReader(/*"J:\\*/"Deaths.txt");
-            CompyLineUser = reader.ReadLine();
-            CompyLineDeaths = reader.ReadLine();
-            reader.Close();
-
-            StreamReader reader2 = new StreamReader(/*"J:\\*/"Passed.txt");
-            CompyLinePassed = reader2.ReadLine();
-            reader2.Close();
-
-            Score = Convert.ToInt32(CompyLinePassed) - Convert.ToInt32(CompyLineDeaths);
-            StreamWriter writer = new StreamWriter(/*"J:\\*/"Stats.txt");
-            
-
-
-
-            for (int i = 0; i < lines.Count; i++)
-            {
-
-
-                if (i % 2 == 0)
-                {
-                    user = lines[i];
-                }
-                else
-                {
-                    score = Convert.ToInt32(lines[i]);
-                }
-
-                writer.WriteLine(user);
-                writer.WriteLine(score);
-            }
-            writer.WriteLine(CompyLineUser);
-            writer.WriteLine(Score);
-            writer.Close();
-
-
-
-        }
         private void btnCallHighScore_Click(object sender, RoutedEventArgs e)
         {
             AddingToHighScore();
@@ -158,6 +107,7 @@ namespace WpfApp2
             StreamWriter y = new StreamWriter("Passed.txt");
             y.Flush();
             y.Close();
+            txtScoreblock.Content = "High Scores:\n";
 
         }
 
@@ -168,82 +118,97 @@ namespace WpfApp2
             txtScoreblock.Content = "High Scores:\n";
             StreamReader reader = new StreamReader("HighScore.txt");
             string x = reader.ReadToEnd();
-            string[] split = x.Split('\n');
-            //List<string> sorting = new List<string>();
-            //List<string> SortingName = new List<string>();
-            string[] SE = new string[2];
-
-            List<string> Saver = new List<string>(2);
-            List<List<string>> HS = new List<List<string>>();
-            reader.Close();
-
-
-            for (int i = 0; i < split.Length; i++)
+            x.Trim();
+            string[] arr = x.Split();
+            StringBuilder str = new StringBuilder();
+            for (int i = 0; i < arr.Length; i++)
             {
-                if (i%3 == 0)
+                if (!(arr[i].Equals(null)|| arr[i].Equals("")|| arr[i].Equals("\r") || arr[i].Equals("\n")))
                 {
+                    str.Append(arr[i]+"," );
                 }
-                else if (i % 3 == 1) { Saver.Add(split[i]); }
-                else if (i%3 == 2)
-                {
-                    Saver.Add(split[i]);
+            }
+            //str.ToString().Remove()
+            x = str.ToString();
+            reader.Close();
+            //for (int i = 0; i < x.Length; i = i+4)
+            //{
+            //    x = x + x[4];
+            //}
+            string[] gtest = x.Split(',');
+            MessageBox.Show(x);
+            
+            List<List<string>> HS = new List<List<string>>();
+            List<string> Saver = new List<string>(2);
 
+            for (int i = 0; i < gtest.Length; i++)
+            {
+                
+                if (i % 2 == 1) {
+                    Saver.Add(gtest[i]);
                     HS.Add(Saver);
+                    Saver = new List<string>(2);
                 }
-               
+                else if (i % 2 == 0)
+                {
+                    Saver.Add(gtest[i]);
+                    
+                }
             }
 
             StringBuilder str1 = new StringBuilder();
             
             List<List<string>> Copy  = new List<List<string>>();
+            List<List<string>> Modify = new List<List<string>>();
+            List<List<string>> Results = new List<List<string>>();
 
             for (int i = 0; i < HS.Count; i++)
             {
-                Copy.Add(HS[i]);
+                Results.Add(HS[i]);
             }
-            List<List<string>> Modify = new List<List<string>>();
+            
             for (int i = 0; i < HS.Count; i++)
             {
                 Modify.Add(HS[i]);
             }
+            //MessageBox.Show("" + Modify.Count);
 
-            if (Modify.Count >= 2)
+            //if (Modify.Count >= 2)
+            //{
+            while (0 < Modify.Count)
             {
-                while (0 < Modify.Count)
+                int location = 0;
+                int Checker = -100;
+                
+                for (int i = 0; i < Modify.Count; i++)
                 {
-                    int location = -1;
-                    int Checker = -100;
-                    for (int i = 0; i < Modify.Count; i++)
+                    if (Checker < int.Parse(Modify[i][1]))
                     {
-                        if (Checker < int.Parse(Modify[i][1]))
-                        {
-                            Checker = int.Parse(Modify[i][1]);
-                            location = i;
-                        }
+                        Checker = int.Parse(Modify[i][1]);
+                        location = i;
                     }
-                    if (location != -1)
-                    {
-                        Copy.Add((Modify[location]));
-                        Modify.Remove(Modify[location]);
-                    }
-
                 }
-
-                //MessageBox.Show(Copy[0][1] + " WHY\n" + Copy[1][1] + " WHY\n" + Copy[2][1] + " WHY\n" + Copy[3][1] + " WHY\n");
-                if (Copy.Count >= 2)
-                {
-
-                    for (int i = 0; i < Copy.Count; i++)
-                    {
-                        
-                        str1.Append(Copy[i][0] + ": " + Copy[i][1]);
-
-                        txtScoreblock.Content += (Convert.ToString(str1));
-                    }
-                    
-                }
+                //if (location != -1)
+                //{
+                Copy.Add((Modify[location]));
+                Modify.Remove(Modify[location]);
+                //}
 
             }
+
+            //MessageBox.Show(Copy[0][1] + " WHY\n" + Copy[1][1] + " WHY\n" + Copy[2][1] + " WHY\n" + Copy[3][1] + " WHY\n");
+                
+            for (int i = 0; i < Copy.Count; i++)
+            {
+                StringBuilder str2 = new StringBuilder();           
+                str2.Append(Copy[i][0] + ": " + Copy[i][1]);
+                        
+                txtScoreblock.Content += (Convert.ToString(str2)+"\n");
+            }
+            MessageBox.Show(Convert.ToString(txtScoreblock.Content));
+                
+
+            //}
 
 
 

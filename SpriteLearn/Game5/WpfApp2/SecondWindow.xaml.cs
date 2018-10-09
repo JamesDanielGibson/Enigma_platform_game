@@ -50,7 +50,7 @@ namespace WpfApp2
         {
             
             InitializeComponent();
-
+            Score();
             Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
             Arrange(new Rect(0, 0, DesiredSize.Width, DesiredSize.Height));
 
@@ -391,26 +391,14 @@ namespace WpfApp2
             Flusher.Close();
 
 
-            try
-            {
-                StreamReader read = new StreamReader("HighScore.txt");
-                read.Close();
-            }
-
-            catch(Exception e)
-            {
-                StreamWriter tester = new StreamWriter("HighScore.txt");
-                tester.Close();
-            }
-
             List<string> saved = Save();
             StreamWriter write = new StreamWriter("HighScore.txt");
             for (int i = 0; i < saved.Count; i++)
             {
                 write.WriteLine(saved[i]);
             }
-            write.WriteLine(SecondLast);
-            write.WriteLine(Last);
+            write.Write(SecondLast+" "+Last);
+            //write.Write(Last+"\n");
             write.Close();
 
             StreamWriter wclear = new StreamWriter("Stats.txt");
@@ -431,6 +419,82 @@ namespace WpfApp2
             return lines;
 
         }
+        private void Score()
+        {
+            string CompyLineUser = "";
+            string CompyLineDeaths = "";
+            string CompyLinePassed = "";
+            int Score = 0;
+
+
+            string user = "Default";
+            int score = -100;
+            List<string> lines = new List<string>();
+
+            try
+            {
+
+
+                StreamReader tesrer = new StreamReader("Stats.txt");
+                tesrer.Close();
+
+            }
+            catch (Exception e)
+            {
+                StreamWriter x = new StreamWriter(/*"J:\\*/"Stats.txt");
+                x.Close();
+            }
+
+
+            StreamReader reader3 = new StreamReader("Stats.txt");
+            string file = reader3.ReadToEnd();
+            reader3.Close();
+
+            string[] Lines = file.Split('\n');
+            lines = Lines.ToList();
+
+
+
+
+            StreamReader reader = new StreamReader(/*"J:\\*/"Deaths.txt");
+            CompyLineUser = reader.ReadLine().Trim();
+            CompyLineDeaths = reader.ReadLine().Trim();
+            reader.Close();
+
+            StreamReader reader2 = new StreamReader(/*"J:\\*/"Passed.txt");
+            CompyLinePassed = reader2.ReadLine().Trim();
+            reader2.Close();
+
+            Score = Convert.ToInt32(CompyLinePassed) - Convert.ToInt32(CompyLineDeaths);
+            StreamWriter writer = new StreamWriter(/*"J:\\*/"Stats.txt");
+            
+
+
+
+            for (int i = 0; i < lines.Count; i++)
+            {
+
+
+                if (i % 2 == 0)
+                {
+                    user = lines[i];
+                }
+                else
+                {
+                    score = Convert.ToInt32(lines[i]);
+                }
+
+                writer.WriteLine(user);
+                writer.WriteLine(score);
+            }
+            writer.WriteLine(CompyLineUser);
+            writer.WriteLine(Score);
+            writer.Close();
+
+
+
+        }
+
 
 
     }
