@@ -29,6 +29,7 @@
         <Label Content="Enter a Username in the box below " HorizontalAlignment="Left" Height="32" Margin="10,233,0,0" VerticalAlignment="Top" Width="307" FontSize="18" Foreground="White" />
         <Image HorizontalAlignment="Left" Height="75" Margin="10,10,0,0" VerticalAlignment="Top" Width="190" Source="Emigma logo.png"/>
         <Button x:Name ="Reset" Content="Reset"  Click="btnReset_Click" Margin="958,565,44,116" FontSize="35" />
+        <Button x:Name ="btnCallHighScore" Content="Call High Score"  Click="btnCallHighScore_Click" Margin="402,449,574,275" FontSize="30"/>
 
     </Grid>
 </Window>

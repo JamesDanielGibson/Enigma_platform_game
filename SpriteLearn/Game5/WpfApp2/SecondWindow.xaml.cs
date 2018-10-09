@@ -413,6 +413,10 @@ namespace WpfApp2
             write.WriteLine(Last);
             write.Close();
 
+            StreamWriter wclear = new StreamWriter("Stats.txt");
+            wclear.Flush();
+            wclear.Close();
+
         }
         private List<string> Save()
         {
