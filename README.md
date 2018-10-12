@@ -7,7 +7,7 @@ Group members: James Daniel Gibson, Garad Watkins, Georgina Fiorentinos
 
 Group mentor: [Louise Poole]
 
-Project title: [Space Game]
+Project title: [Impossible Platforms]
 
 Project page: [https://github.com/JamesDanielGibson/Enigma_platform_game]
 
