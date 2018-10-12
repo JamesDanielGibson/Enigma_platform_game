@@ -19,7 +19,7 @@ Instructions for use (allowable actions): [
 
 Tools used: [List and describe any .NET libraries or external tools that you imported for use in your project]
 
-Concepts used: [List ALL aspects of the CSc 102 curriculum that your project uses. So if your program uses Lists, Files, Recursion, Dictionaries, Custom classes, etc.; document them here and provide directions as to where those concepts are used in the code base. Please use the standard topics list on the Think Sharply with C# web page for the list of anticipated topics/concepts]
+Concepts used: [Lists, Classes, Documents using system.IO, WPF Canvas, Collison, Sorting algorithims, Scope, Arrays, Methods]
 
 Assumptions: [Our game counts the number of times you collect the transport controller in a single session and automatically resets the level after each collection. It also will reset your transport controller counter each time you die (ie. You only have one life). After you die, the game will reset the level. The score from previous attempts are stored and can been seen.]
 
